@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-blue: #1e88e5;
+  --light-blue: #e3f2fd;
+  --gradient-start: #1e88e5;
+  --gradient-end: #42a5f5;
+}
+
+.dark {
+  --primary-blue: #42a5f5;
+  --light-blue: #0d47a1;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .gradient-bg {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, #1e88e5 0%, #42a5f5 50%, #e3f2fd 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #1e88e5 0%, #42a5f5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
