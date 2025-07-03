@@ -24,8 +24,13 @@ import {
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
+import james from "../public/james.webp"
+import jibril from "../public/jibril.webp"
+import mario from "../public/mario.webp"
 import Image from "next/image"
 import { DemoRequestButton } from "@/components/demo-request-button"
+2
+
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -62,30 +67,32 @@ export default function HomePage() {
   const testimonials = [
     {
       quote:
-        "MyLikita HMS has transformed our patient management completely. The AI-powered features save us hours daily.",
-      name: "Dr. Amina Hassan",
-      role: "Chief Medical Officer",
+        "Mylikita Health has made my life easier. Managing patient records is now seamless and stress-free.",
+      name: "Dr. James King",
+      role: "Medical Doctor",
       organization: "Murtala Muhammad Hospital",
-      image: "/placeholder.svg?height=80&width=80",
+      image: james,
       rating: 5,
     },
     {
-      quote: "The telemedicine platform has allowed us to reach patients in remote areas we never could before.",
-      name: "Dr. Chidi Okafor",
-      role: "Director of Digital Health",
+      quote:
+        "I was skeptical at first, but Mylikita Health has completely transformed the way we operate. It has simplified administrative tasks and improved efficiency.",
+      name: "Mr. Ibrahim Jibril",
+      role: "Administrator",
       organization: "OUMC",
-      image: "/placeholder.svg?height=80&width=80",
+      image: jibril,
       rating: 5,
     },
     {
-      quote: "Implementation was seamless and the support team is exceptional. Our efficiency has increased by 60%.",
-      name: "Mrs. Fatima Abdullahi",
-      role: "Hospital Administrator",
+      quote:
+        "Mylikita Health has been a game-changer for me. Their services are top-notch, and the platform is incredibly user-friendly and efficient.",
+      name: "Mrs. Mario Isah",
+      role: "Nurse",
       organization: "Federal Medical Centre",
-      image: "/placeholder.svg?height=80&width=80",
+      image: mario,
       rating: 5,
     },
-  ]
+  ];
 
   const blogPosts = [
     {
@@ -114,13 +121,15 @@ export default function HomePage() {
   ]
 
   const trustedClients = [
-    { name: "OUMC", location: "Ile-Ife, Nigeria" },
-    { name: "PHIMA", location: "Lagos, Nigeria" },
-    { name: "Murtala Muhammad Hospital", location: "Kano, Nigeria" },
-    { name: "Federal Medical Centre", location: "Abuja, Nigeria" },
-    { name: "Lagos University Teaching Hospital", location: "Lagos, Nigeria" },
-    { name: "Ahmadu Bello University Hospital", location: "Zaria, Nigeria" },
-  ]
+    { name: "Prime Specialist Clinic", location: "Ile-Ife, Nigeria" },
+    { name: "Habeeby Orthopedic Clinic", location: "Lagos, Nigeria" },
+    { name: "Murtala Muhammad Specialist Hospital", location: "Kano, Nigeria" },
+    {
+      name: "Muhammad Abdullahi Wase Teaching Hospital",
+      location: "Lagos, Nigeria",
+    },
+    
+  ];
 
   return (
     <div className="overflow-hidden">
@@ -540,7 +549,7 @@ export default function HomePage() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  justify-center place-content-centersss gap-8"
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
@@ -548,7 +557,7 @@ export default function HomePage() {
           >
             {trustedClients.map((client, index) => (
               <motion.div key={index} variants={fadeInUp} className="group">
-                <Card className="bg-white dark:bg-gray-900 border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                <Card className="bg-white dark:bg-gray-900 border-0 shadow-lg  h-[200px] hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                   <CardContent className="p-6 text-center">
                     <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Building2 className="h-8 w-8 text-blue-600 dark:text-blue-400" />
@@ -608,7 +617,7 @@ export default function HomePage() {
                     <div className="flex items-center">
                       <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
                         <Image
-                          src={testimonial.image || "/placeholder.svg"}
+                          src={testimonial.image || "/placeholder.james"}
                           alt={testimonial.name}
                           fill
                           className="object-cover"
