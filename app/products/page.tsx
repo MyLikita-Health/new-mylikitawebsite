@@ -17,6 +17,11 @@ import {
   Database,
   Shield,
 } from "lucide-react"
+import hms from "../../public/hms.jpeg"
+import pharma from "../../public/pharma.jpeg"
+import med from "../../public/med.jpeg"
+import lab from "../../public/lab.jpeg";
+import ris from "../../public/ris.jpeg";
 import Image from "next/image"
 import Link from "next/link"
 
@@ -54,14 +59,19 @@ export default function ProductsPage() {
         "Real-time Analytics Dashboard",
         "Mobile-responsive Interface",
       ],
-      targetAudience: ["General Hospitals", "Specialist Clinics", "Private Practices", "Government Health Centers"],
+      targetAudience: [
+        "General Hospitals",
+        "Specialist Clinics",
+        "Private Practices",
+        "Government Health Centers",
+      ],
       benefits: [
         "Reduce paperwork by 90%",
         "Improve patient care coordination",
         "Streamline billing processes",
         "Enhance data security and compliance",
       ],
-      image: "/placeholder.svg?height=400&width=600",
+      image: hms,
     },
     {
       id: "labcore",
@@ -81,14 +91,19 @@ export default function ProductsPage() {
         "Turnaround Time Monitoring",
         "External Lab Integration",
       ],
-      targetAudience: ["Medical Laboratories", "Hospital Labs", "Diagnostic Centers", "Research Facilities"],
+      targetAudience: [
+        "Medical Laboratories",
+        "Hospital Labs",
+        "Diagnostic Centers",
+        "Research Facilities",
+      ],
       benefits: [
         "Reduce test turnaround time by 50%",
         "Minimize human errors",
         "Improve lab efficiency",
         "Ensure regulatory compliance",
       ],
-      image: "/placeholder.svg?height=400&width=600",
+      image: lab,
     },
     {
       id: "scanris",
@@ -108,14 +123,19 @@ export default function ProductsPage() {
         "Quality Assurance Tools",
         "Multi-format Image Support",
       ],
-      targetAudience: ["Radiology Departments", "Imaging Centers", "Hospitals", "Teleradiology Services"],
+      targetAudience: [
+        "Radiology Departments",
+        "Imaging Centers",
+        "Hospitals",
+        "Teleradiology Services",
+      ],
       benefits: [
         "Faster image processing",
         "Improved diagnostic accuracy",
         "Reduced storage costs",
         "Enhanced collaboration",
       ],
-      image: "/placeholder.svg?height=400&width=600",
+      image: ris,
     },
     {
       id: "pharmabooks",
@@ -135,14 +155,19 @@ export default function ProductsPage() {
         "Prescription Processing",
         "Regulatory Compliance",
       ],
-      targetAudience: ["Hospital Pharmacies", "Retail Pharmacies", "Pharmaceutical Distributors", "Chain Pharmacies"],
+      targetAudience: [
+        "Hospital Pharmacies",
+        "Retail Pharmacies",
+        "Pharmaceutical Distributors",
+        "Chain Pharmacies",
+      ],
       benefits: [
         "Reduce medication errors",
         "Optimize inventory levels",
         "Improve profitability",
         "Ensure drug safety",
       ],
-      image: "/placeholder.svg?height=400&width=600",
+      image: pharma,
     },
     {
       id: "medilinka",
@@ -162,16 +187,21 @@ export default function ProductsPage() {
         "Payment Integration",
         "Multi-device Support",
       ],
-      targetAudience: ["Telemedicine Providers", "Remote Clinics", "Specialist Consultants", "Rural Healthcare"],
+      targetAudience: [
+        "Telemedicine Providers",
+        "Remote Clinics",
+        "Specialist Consultants",
+        "Rural Healthcare",
+      ],
       benefits: [
         "Expand patient reach",
         "Reduce travel costs",
         "Improve access to specialists",
         "Enable continuous care",
       ],
-      image: "/placeholder.svg?height=400&width=600",
+      image: med,
     },
-  ]
+  ];
 
   return (
     <div className="pt-20">

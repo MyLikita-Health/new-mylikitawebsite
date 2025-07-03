@@ -4,8 +4,13 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { Award, Users, Target, Lightbulb } from "lucide-react"
+import mus from "../../public/mus.webp"
+import oz from "../../public/oz.webp"
+import sadiq from "../../public/sadiq.jpg"
+import bash from "../../public/bash.webp"
+import kaltum from "../../public/kaltum.jpeg"
+import hajra from "../../public/hajra.jpg"
 import Image from "next/image"
-
 export default function AboutPage() {
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -23,54 +28,54 @@ export default function AboutPage() {
 
   const teamMembers = [
     {
-      name: "Issa Mustapha",
-      title: "Chief Executive Officer",
-      bio: "Visionary leader with over 15 years of experience in healthcare technology and digital transformation across Africa.",
-      image: "/placeholder.svg?height=300&width=300",
-      expertise: "Healthcare Strategy",
+      name: "Mustapha Issa Toyin",
+      title: "CEO & Founder",
+      // bio: "Visionary leader with over 15 years of experience in healthcare technology and digital transformation across Africa.",
+       image: mus,
+      // expertise: "Healthcare Strategy",
       linkedin: "#",
     },
     {
-      name: "Muhammad Fahad Ado",
-      title: "Chief Technology Officer",
-      bio: "Technology expert specializing in scalable healthcare solutions and system architecture for emerging markets.",
-      image: "/placeholder.svg?height=300&width=300",
-      expertise: "Software Architecture",
+      name: "Sadiq Haruna",
+      title: "CTO",
+      // bio: "Technology expert specializing in scalable healthcare solutions and system architecture for emerging markets.",
+      image: sadiq,
+      // expertise: "Software Architecture",
       linkedin: "#",
     },
     {
-      name: "Nasir Abdurrahman",
-      title: "Chief Operating Officer",
-      bio: "Operations specialist focused on healthcare delivery optimization and strategic partnerships across the continent.",
-      image: "/placeholder.svg?height=300&width=300",
-      expertise: "Operations Management",
+      name: "Ozoemena Simeon Uroko",
+      title: "Head of Marketing",
+      // bio: "Operations specialist focused on healthcare delivery optimization and strategic partnerships across the continent.",
+      image: oz,
+      // expertise: "Operations Management",
       linkedin: "#",
     },
     {
-      name: "Dr. Aisha Bello",
-      title: "Chief Medical Officer",
-      bio: "Experienced physician and healthcare administrator driving clinical excellence and medical innovation initiatives.",
-      image: "/placeholder.svg?height=300&width=300",
-      expertise: "Clinical Operations",
+      name: "Bashir Muhammad Jibrin",
+      title: "Senior Software Developer",
+      // bio: "Experienced physician and healthcare administrator driving clinical excellence and medical innovation initiatives.",
+       image: bash,
+      // expertise: "Clinical Operations",
       linkedin: "#",
     },
     {
-      name: "Ibrahim Suleiman",
-      title: "Chief Financial Officer",
-      bio: "Financial strategist with expertise in healthcare economics and sustainable business model development.",
-      image: "/placeholder.svg?height=300&width=300",
-      expertise: "Financial Strategy",
+      name: "Kalthum Uthman",
+      title: "Software Developer",
+      // bio: "Financial strategist with expertise in healthcare economics and sustainable business model development.",
+       image: kaltum,
+      // expertise: "Financial Strategy",
       linkedin: "#",
     },
     {
-      name: "Fatima Al-Hassan",
-      title: "VP of Product Development",
-      bio: "Product innovation leader focused on user-centered design and cutting-edge healthcare technology solutions.",
-      image: "/placeholder.svg?height=300&width=300",
-      expertise: "Product Innovation",
+      name: "Hajara Abubakar Abdulkadir",
+      title: "Software Developer",
+      // bio: "Product innovation leader focused on user-centered design and cutting-edge healthcare technology solutions.",
+       image: hajra,
+      // expertise: "Product Innovation",
       linkedin: "#",
     },
-  ]
+  ];
 
   const timeline = [
     {

@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { motion } from "framer-motion"
+import hms from "../public/hms.jpeg"
 import {
   Building2,
   TestTube2,
@@ -149,7 +150,7 @@ const industries = {
       "MyLikita provides comprehensive digital infrastructure for hospitals, integrating all departments and workflows into a unified system. From emergency departments to specialized units, our solutions ensure seamless operations, improved patient safety, and enhanced clinical outcomes while maintaining compliance with healthcare standards.",
     icon: Building2,
     color: "from-green-500 to-green-600",
-    image: "/placeholder.svg?height=400&width=600",
+    image: hms,
     solutions: [
       {
         name: "MyLikita HMS",
