@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { getDatabase } from "@/lib/mongodb"
-import type { BlogPost } from "@/lib/blog-models"
+import type { BlogPost, BlogCategory } from "@/lib/blog-models"
+import { generateSlug, calculateReadTime } from "@/lib/blog-utils"
 
 export async function GET(request: NextRequest) {
   try {
@@ -8,22 +9,17 @@ export async function GET(request: NextRequest) {
     const page = Number.parseInt(searchParams.get("page") || "1")
     const limit = Number.parseInt(searchParams.get("limit") || "10")
     const category = searchParams.get("category")
-    const tag = searchParams.get("tag")
     const search = searchParams.get("search")
     const featured = searchParams.get("featured") === "true"
 
     const db = await getDatabase()
-    const collection = db.collection<BlogPost>("posts")
+    const skip = (page - 1) * limit
 
     // Build query
     const query: any = { published: true }
 
     if (category) {
       query.category = category
-    }
-
-    if (tag) {
-      query.tags = { $in: [tag] }
     }
 
     if (search) {
@@ -34,97 +30,118 @@ export async function GET(request: NextRequest) {
       ]
     }
 
-    // Get total count
-    const total = await collection.countDocuments(query)
+    if (featured) {
+      query.featured = true
+    }
 
     // Get posts
-    let posts = await collection
+    const posts = await db
+      .collection<BlogPost>("posts")
       .find(query)
       .sort({ publishedAt: -1 })
-      .skip((page - 1) * limit)
+      .skip(skip)
       .limit(limit)
       .toArray()
 
-    // If featured is requested, get top 3 most viewed posts
-    if (featured) {
-      posts = await collection.find({ published: true }).sort({ views: -1 }).limit(3).toArray()
-    }
+    // Get total count for pagination
+    const total = await db.collection<BlogPost>("posts").countDocuments(query)
+    const pages = Math.ceil(total / limit)
 
     return NextResponse.json({
       posts,
       pagination: {
         page,
-        limit,
+        pages,
         total,
-        pages: Math.ceil(total / limit),
+        hasNext: page < pages,
+        hasPrev: page > 1,
       },
     })
   } catch (error) {
-    console.error("Error fetching blog posts:", error)
-    return NextResponse.json({ error: "Failed to fetch blog posts" }, { status: 500 })
+    console.error("Error fetching posts:", error)
+    return NextResponse.json({ error: "Failed to fetch posts" }, { status: 500 })
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { title, excerpt, content, author, category, tags, featuredImage, published } = body
+    const {
+      title,
+      excerpt,
+      content,
+      featuredImage,
+      category,
+      tags,
+      author,
+      published,
+      featured,
+      seoTitle,
+      seoDescription,
+      seoKeywords,
+    } = body
 
-    if (!title || !content || !author) {
+    // Validation
+    if (!title || !content || !category || !author?.name || !author?.email) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
     }
 
     const db = await getDatabase()
-    const collection = db.collection<BlogPost>("posts")
 
     // Generate slug
-    const baseSlug = title
-      .toLowerCase()
-      .replace(/[^a-z0-9 -]/g, "")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-")
-      .trim()
-
-    // Ensure unique slug
+    const baseSlug = generateSlug(title)
     let slug = baseSlug
     let counter = 1
-    while (await collection.findOne({ slug })) {
+
+    // Ensure unique slug
+    while (await db.collection("posts").findOne({ slug })) {
       slug = `${baseSlug}-${counter}`
       counter++
     }
 
     // Calculate read time
-    const readTime = Math.ceil(content.trim().split(/\s+/).length / 200)
+    const readTime = calculateReadTime(content)
 
-    const newPost: Omit<BlogPost, "_id"> = {
+    const post: BlogPost = {
       title,
       slug,
-      excerpt,
+      excerpt: excerpt || content.replace(/<[^>]*>/g, "").substring(0, 160) + "...",
       content,
-      author,
-      category,
-      tags: tags || [],
       featuredImage,
-      published: published || false,
+      category,
+      tags: Array.isArray(tags) ? tags : tags?.split(",").map((t: string) => t.trim()) || [],
+      author: {
+        name: author.name,
+        email: author.email,
+        avatar: author.avatar,
+      },
+      published: Boolean(published),
+      featured: Boolean(featured),
+      views: 0,
+      likes: 0,
+      readTime,
+      seoTitle,
+      seoDescription,
+      seoKeywords: Array.isArray(seoKeywords)
+        ? seoKeywords
+        : seoKeywords?.split(",").map((k: string) => k.trim()) || [],
       publishedAt: published ? new Date() : undefined,
       createdAt: new Date(),
       updatedAt: new Date(),
-      readTime,
-      views: 0,
-      likes: 0,
     }
 
-    const result = await collection.insertOne(newPost)
+    const result = await db.collection<BlogPost>("posts").insertOne(post)
 
-    return NextResponse.json(
-      {
-        _id: result.insertedId,
-        ...newPost,
-      },
-      { status: 201 },
-    )
+    // Update category post count
+    await db.collection<BlogCategory>("categories").updateOne({ name: category }, { $inc: { postCount: 1 } })
+
+    return NextResponse.json({
+      success: true,
+      postId: result.insertedId,
+      slug: post.slug,
+    })
   } catch (error) {
-    console.error("Error creating blog post:", error)
-    return NextResponse.json({ error: "Failed to create blog post" }, { status: 500 })
+    console.error("Error creating post:", error)
+    return NextResponse.json({ error: "Failed to create post" }, { status: 500 })
   }
 }

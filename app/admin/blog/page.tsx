@@ -7,7 +7,20 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { motion } from "framer-motion"
-import { Plus, Search, Edit, Trash2, Eye, Heart, Calendar, TrendingUp, Users, FileText, BarChart3 } from "lucide-react"
+import {
+  Plus,
+  Search,
+  Edit,
+  Trash2,
+  Eye,
+  Heart,
+  Calendar,
+  TrendingUp,
+  Users,
+  FileText,
+  BarChart3,
+  Tag,
+} from "lucide-react"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import type { BlogPost } from "@/lib/blog-models"
@@ -116,12 +129,20 @@ export default function BlogAdminPage() {
             <h1 className="text-3xl font-bold font-space-grotesk text-gray-900 dark:text-white">Blog Management</h1>
             <p className="text-gray-600 dark:text-gray-300 mt-2">Manage your blog posts and view analytics</p>
           </div>
-          <Link href="/admin/blog/new">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-              <Plus className="mr-2 h-4 w-4" />
-              New Post
-            </Button>
-          </Link>
+          <div className="flex space-x-2">
+            <Link href="/admin/blog/categories">
+              <Button variant="outline" className="text-blue-600 hover:text-blue-700">
+                <Tag className="mr-2 h-4 w-4" />
+                Categories
+              </Button>
+            </Link>
+            <Link href="/admin/blog/new">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                <Plus className="mr-2 h-4 w-4" />
+                New Post
+              </Button>
+            </Link>
+          </div>
         </motion.div>
 
         {/* Analytics Cards */}

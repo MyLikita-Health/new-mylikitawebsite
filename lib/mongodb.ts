@@ -28,9 +28,9 @@ if (process.env.NODE_ENV === "development") {
   clientPromise = client.connect()
 }
 
-export default clientPromise
-
 export async function getDatabase(): Promise<Db> {
   const client = await clientPromise
   return client.db("mylikita_blog")
 }
+
+export default clientPromise

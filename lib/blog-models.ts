@@ -4,63 +4,25 @@ export interface BlogPost {
   slug: string
   excerpt: string
   content: string
+  featuredImage?: string
+  category: string
+  tags: string[]
   author: {
     name: string
     email: string
     avatar?: string
   }
-  category: string
-  tags: string[]
-  featuredImage?: string
   published: boolean
+  featured: boolean
+  views: number
+  likes: number
+  readTime: number
+  seoTitle?: string
+  seoDescription?: string
+  seoKeywords?: string[]
   publishedAt?: Date
   createdAt: Date
   updatedAt: Date
-  readTime: number
-  views: number
-  likes: number
-  seo?: {
-    metaTitle?: string
-    metaDescription?: string
-    keywords?: string[]
-  }
-}
-
-export interface BlogAnalytics {
-  _id?: string
-  postId: string
-  views: number
-  uniqueViews: number
-  likes: number
-  readTime: number
-  bounceRate: number
-  avgTimeOnPage: number
-  referrers: { [key: string]: number }
-  countries: { [key: string]: number }
-  devices: { [key: string]: number }
-  createdAt: Date
-  updatedAt: Date
-}
-
-export interface BlogView {
-  _id?: string
-  postId: string
-  sessionId: string
-  ipAddress: string
-  userAgent: string
-  referrer?: string
-  country?: string
-  device: string
-  timeSpent: number
-  createdAt: Date
-}
-
-export interface BlogLike {
-  _id?: string
-  postId: string
-  sessionId: string
-  ipAddress: string
-  createdAt: Date
 }
 
 export interface BlogCategory {
@@ -71,4 +33,39 @@ export interface BlogCategory {
   color?: string
   postCount: number
   createdAt: Date
+  updatedAt: Date
+}
+
+export interface BlogView {
+  _id?: string
+  postSlug: string
+  sessionId: string
+  userAgent?: string
+  referrer?: string
+  device: "desktop" | "mobile" | "tablet"
+  viewedAt: Date
+}
+
+export interface BlogLike {
+  _id?: string
+  postSlug: string
+  sessionId: string
+  likedAt: Date
+}
+
+export interface BlogAnalytics {
+  _id?: string
+  postSlug: string
+  date: Date
+  views: number
+  likes: number
+  uniqueViews: number
+  bounceRate: number
+  avgTimeOnPage: number
+  devices: {
+    desktop: number
+    mobile: number
+    tablet: number
+  }
+  referrers: Record<string, number>
 }

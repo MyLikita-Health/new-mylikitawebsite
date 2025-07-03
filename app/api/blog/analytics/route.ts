@@ -5,46 +5,50 @@ import type { BlogPost, BlogView, BlogLike } from "@/lib/blog-models"
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    const period = searchParams.get("period") || "30" // days
-    const postId = searchParams.get("postId")
+    const postSlug = searchParams.get("postSlug")
+    const days = Number.parseInt(searchParams.get("days") || "30")
 
     const db = await getDatabase()
-    const postsCollection = db.collection<BlogPost>("posts")
-    const viewsCollection = db.collection<BlogView>("views")
-    const likesCollection = db.collection<BlogLike>("likes")
-
     const startDate = new Date()
-    startDate.setDate(startDate.getDate() - Number.parseInt(period))
+    startDate.setDate(startDate.getDate() - days)
 
-    if (postId) {
+    if (postSlug) {
       // Get analytics for specific post
-      const post = await postsCollection.findOne({ _id: postId })
+      const post = await db.collection<BlogPost>("posts").findOne({ slug: postSlug })
       if (!post) {
         return NextResponse.json({ error: "Post not found" }, { status: 404 })
       }
 
-      const views = await viewsCollection.countDocuments({
-        postId,
-        createdAt: { $gte: startDate },
-      })
-
-      const uniqueViews = await viewsCollection.distinct("sessionId", {
-        postId,
-        createdAt: { $gte: startDate },
-      })
-
-      const likes = await likesCollection.countDocuments({
-        postId,
-        createdAt: { $gte: startDate },
-      })
-
-      // Device breakdown
-      const deviceStats = await viewsCollection
+      // Get views over time
+      const viewsOverTime = await db
+        .collection<BlogView>("views")
         .aggregate([
           {
             $match: {
-              postId,
-              createdAt: { $gte: startDate },
+              postSlug,
+              viewedAt: { $gte: startDate },
+            },
+          },
+          {
+            $group: {
+              _id: {
+                $dateToString: { format: "%Y-%m-%d", date: "$viewedAt" },
+              },
+              views: { $sum: 1 },
+            },
+          },
+          { $sort: { _id: 1 } },
+        ])
+        .toArray()
+
+      // Get device breakdown
+      const deviceBreakdown = await db
+        .collection<BlogView>("views")
+        .aggregate([
+          {
+            $match: {
+              postSlug,
+              viewedAt: { $gte: startDate },
             },
           },
           {
@@ -56,35 +60,25 @@ export async function GET(request: NextRequest) {
         ])
         .toArray()
 
-      // Daily views
-      const dailyViews = await viewsCollection
+      // Get referrer breakdown
+      const referrerBreakdown = await db
+        .collection<BlogView>("views")
         .aggregate([
           {
             $match: {
-              postId,
-              createdAt: { $gte: startDate },
+              postSlug,
+              viewedAt: { $gte: startDate },
+              referrer: { $ne: "" },
             },
           },
           {
             $group: {
-              _id: {
-                $dateToString: {
-                  format: "%Y-%m-%d",
-                  date: "$createdAt",
-                },
-              },
-              views: { $sum: 1 },
-              uniqueViews: { $addToSet: "$sessionId" },
+              _id: "$referrer",
+              count: { $sum: 1 },
             },
           },
-          {
-            $project: {
-              date: "$_id",
-              views: 1,
-              uniqueViews: { $size: "$uniqueViews" },
-            },
-          },
-          { $sort: { date: 1 } },
+          { $sort: { count: -1 } },
+          { $limit: 10 },
         ])
         .toArray()
 
@@ -92,90 +86,59 @@ export async function GET(request: NextRequest) {
         post: {
           title: post.title,
           slug: post.slug,
+          views: post.views,
+          likes: post.likes,
+          publishedAt: post.publishedAt,
         },
-        period: Number.parseInt(period),
-        views,
-        uniqueViews: uniqueViews.length,
-        likes,
-        deviceStats,
-        dailyViews,
+        viewsOverTime,
+        deviceBreakdown,
+        referrerBreakdown,
       })
     } else {
       // Get overall analytics
-      const totalPosts = await postsCollection.countDocuments({ published: true })
-      const totalViews = await viewsCollection.countDocuments({
-        createdAt: { $gte: startDate },
+      const totalPosts = await db.collection<BlogPost>("posts").countDocuments({ published: true })
+      const totalViews = await db.collection<BlogView>("views").countDocuments({
+        viewedAt: { $gte: startDate },
       })
-      const totalLikes = await likesCollection.countDocuments({
-        createdAt: { $gte: startDate },
+      const totalLikes = await db.collection<BlogLike>("likes").countDocuments({
+        likedAt: { $gte: startDate },
       })
 
-      // Top posts
-      const topPosts = await postsCollection
-        .find({ published: true })
-        .sort({ views: -1 })
-        .limit(10)
-        .project({ title: 1, slug: 1, views: 1, likes: 1 })
+      // Top posts by views
+      const topPosts = await db
+        .collection<BlogPost>("posts")
+        .find({ published: true }, { sort: { views: -1 }, limit: 10 })
         .toArray()
 
-      // Category breakdown
-      const categoryStats = await postsCollection
-        .aggregate([
-          { $match: { published: true } },
-          {
-            $group: {
-              _id: "$category",
-              posts: { $sum: 1 },
-              totalViews: { $sum: "$views" },
-              totalLikes: { $sum: "$likes" },
-            },
-          },
-          { $sort: { posts: -1 } },
-        ])
-        .toArray()
-
-      // Daily analytics
-      const dailyAnalytics = await viewsCollection
+      // Views over time
+      const viewsOverTime = await db
+        .collection<BlogView>("views")
         .aggregate([
           {
             $match: {
-              createdAt: { $gte: startDate },
+              viewedAt: { $gte: startDate },
             },
           },
           {
             $group: {
               _id: {
-                $dateToString: {
-                  format: "%Y-%m-%d",
-                  date: "$createdAt",
-                },
+                $dateToString: { format: "%Y-%m-%d", date: "$viewedAt" },
               },
               views: { $sum: 1 },
-              uniqueViews: { $addToSet: "$sessionId" },
             },
           },
-          {
-            $project: {
-              date: "$_id",
-              views: 1,
-              uniqueViews: { $size: "$uniqueViews" },
-            },
-          },
-          { $sort: { date: 1 } },
+          { $sort: { _id: 1 } },
         ])
         .toArray()
 
       return NextResponse.json({
-        period: Number.parseInt(period),
         overview: {
           totalPosts,
           totalViews,
           totalLikes,
-          avgViewsPerPost: totalPosts > 0 ? Math.round(totalViews / totalPosts) : 0,
         },
         topPosts,
-        categoryStats,
-        dailyAnalytics,
+        viewsOverTime,
       })
     }
   } catch (error) {

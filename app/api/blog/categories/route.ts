@@ -1,27 +1,12 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { getDatabase } from "@/lib/mongodb"
-import type { BlogCategory, BlogPost } from "@/lib/blog-models"
+import type { BlogCategory } from "@/lib/blog-models"
+import { generateSlug } from "@/lib/blog-utils"
 
 export async function GET() {
   try {
     const db = await getDatabase()
-    const categoriesCollection = db.collection<BlogCategory>("categories")
-    const postsCollection = db.collection<BlogPost>("posts")
-
-    // Get categories with post counts
-    const categories = await categoriesCollection.find({}).toArray()
-
-    // Update post counts
-    for (const category of categories) {
-      const postCount = await postsCollection.countDocuments({
-        category: category.name,
-        published: true,
-      })
-
-      await categoriesCollection.updateOne({ _id: category._id }, { $set: { postCount } })
-
-      category.postCount = postCount
-    }
+    const categories = await db.collection<BlogCategory>("categories").find({}).sort({ name: 1 }).toArray()
 
     return NextResponse.json(categories)
   } catch (error) {
@@ -40,40 +25,29 @@ export async function POST(request: NextRequest) {
     }
 
     const db = await getDatabase()
-    const collection = db.collection<BlogCategory>("categories")
-
-    // Generate slug
-    const slug = name
-      .toLowerCase()
-      .replace(/[^a-z0-9 -]/g, "")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-")
-      .trim()
 
     // Check if category already exists
-    const existing = await collection.findOne({ slug })
+    const existing = await db.collection<BlogCategory>("categories").findOne({ name })
     if (existing) {
       return NextResponse.json({ error: "Category already exists" }, { status: 400 })
     }
 
-    const newCategory: Omit<BlogCategory, "_id"> = {
+    const category: BlogCategory = {
       name,
-      slug,
+      slug: generateSlug(name),
       description,
-      color,
+      color: color || "#3B82F6",
       postCount: 0,
       createdAt: new Date(),
+      updatedAt: new Date(),
     }
 
-    const result = await collection.insertOne(newCategory)
+    const result = await db.collection<BlogCategory>("categories").insertOne(category)
 
-    return NextResponse.json(
-      {
-        _id: result.insertedId,
-        ...newCategory,
-      },
-      { status: 201 },
-    )
+    return NextResponse.json({
+      success: true,
+      categoryId: result.insertedId,
+    })
   } catch (error) {
     console.error("Error creating category:", error)
     return NextResponse.json({ error: "Failed to create category" }, { status: 500 })

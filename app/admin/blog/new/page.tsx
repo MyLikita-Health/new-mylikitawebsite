@@ -16,6 +16,7 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import type { BlogCategory } from "@/lib/blog-models"
 import { calculateReadTime } from "@/lib/blog-utils"
+import RichTextEditor from "@/components/rich-text-editor"
 
 export default function NewBlogPostPage() {
   const router = useRouter()
@@ -166,14 +167,12 @@ export default function NewBlogPostPage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="content">Content *</Label>
-                  <Textarea
-                    id="content"
+                  <RichTextEditor
+                    label="Content *"
                     value={formData.content}
-                    onChange={(e) => handleInputChange("content", e.target.value)}
-                    placeholder="Write your post content here... (HTML supported)"
-                    rows={20}
-                    className="font-mono text-sm"
+                    onChange={(value) => handleInputChange("content", value)}
+                    placeholder="Write your post content here..."
+                    height="500px"
                   />
                   <p className="text-xs text-gray-500 mt-1">
                     Estimated read time: {calculateReadTime(formData.content)} minutes
