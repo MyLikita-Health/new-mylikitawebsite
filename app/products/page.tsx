@@ -226,13 +226,13 @@ export default function ProductsPage() {
             </motion.p>
             <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-4">
               <Badge variant="secondary" className="px-4 py-2 text-sm">
-                9 Products
+                5 Products
               </Badge>
               <Badge variant="secondary" className="px-4 py-2 text-sm">
-                500+ Facilities
+                50+ Facilities
               </Badge>
               <Badge variant="secondary" className="px-4 py-2 text-sm">
-                50+ Cities
+                5+ Cities
               </Badge>
             </motion.div>
           </motion.div>

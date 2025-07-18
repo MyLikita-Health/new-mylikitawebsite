@@ -36,7 +36,8 @@ export default function IndustriesPage() {
     {
       id: "clinics",
       name: "Clinics",
-      description: "Comprehensive solutions for private and public clinics to streamline patient care and operations.",
+      description:
+        "Comprehensive solutions for private and public clinics to streamline patient care and operations.",
       icon: Stethoscope,
       color: "from-blue-500 to-blue-600",
       image: "/placeholder.svg?height=300&width=400",
@@ -62,11 +63,18 @@ export default function IndustriesPage() {
     {
       id: "hospitals",
       name: "General & Specialist Hospitals",
-      description: "End-to-end hospital management solutions for comprehensive healthcare delivery.",
+      description:
+        "End-to-end hospital management solutions for comprehensive healthcare delivery.",
       icon: Building2,
       color: "from-green-500 to-green-600",
       image: "/placeholder.svg?height=300&width=400",
-      solutions: ["MyLikita HMS", "ScanRIS", "LabCore", "PharmaBooks", "MediLinka"],
+      solutions: [
+        "MyLikita HMS",
+        "ScanRIS",
+        "LabCore",
+        "PharmaBooks",
+        "MediLinka",
+      ],
       benefits: [
         "Integrate all hospital departments",
         "Improve patient safety and outcomes",
@@ -88,7 +96,8 @@ export default function IndustriesPage() {
     {
       id: "labs-diagnostics",
       name: "Labs & Diagnostics",
-      description: "Specialized laboratory management systems for accurate and efficient diagnostic services.",
+      description:
+        "Specialized laboratory management systems for accurate and efficient diagnostic services.",
       icon: TestTube2,
       color: "from-purple-500 to-purple-600",
       image: "/placeholder.svg?height=300&width=400",
@@ -114,7 +123,8 @@ export default function IndustriesPage() {
     {
       id: "government-health",
       name: "Government Health Agencies",
-      description: "Scalable solutions for public health management and population health monitoring.",
+      description:
+        "Scalable solutions for public health management and population health monitoring.",
       icon: Shield,
       color: "from-red-500 to-red-600",
       image: "/placeholder.svg?height=300&width=400",
@@ -140,7 +150,8 @@ export default function IndustriesPage() {
     {
       id: "regulatory-agencies",
       name: "Regulatory Agencies",
-      description: "Compliance and monitoring solutions for healthcare regulatory bodies and oversight organizations.",
+      description:
+        "Compliance and monitoring solutions for healthcare regulatory bodies and oversight organizations.",
       icon: Users,
       color: "from-teal-500 to-teal-600",
       image: "/placeholder.svg?height=300&width=400",
@@ -163,7 +174,7 @@ export default function IndustriesPage() {
         compliance: "95%",
       },
     },
-  ]
+  ];
 
   return (
     <div className="pt-20">
