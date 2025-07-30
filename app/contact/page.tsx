@@ -73,25 +73,25 @@ export default function ContactPage() {
     {
       icon: Mail,
       title: "Email Us",
-      details: "info@mylikita.com",
+      details: "hello@mylikita.com",
       description: "Send us an email and we'll respond within 24 hours",
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: "+234 (0) 123 456 7890",
+      details: "+2349064240961",
       description: "Speak with our team Monday to Friday, 9AM - 6PM WAT",
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      details: "Abuja, Nigeria",
-      description: "Our headquarters in the heart of Nigeria's capital",
+      details: "Office: Floor 1,African Alliance Building Sani Abacha Way,Kano,Nigeria",
+      description: "Branch: Flat 42, DROL Estate Wuye Abuja,Nigeria",
     },
     {
       icon: Clock,
       title: "Business Hours",
-      details: "Mon - Fri: 9AM - 6PM WAT",
+      details: "Mon - stu: 9AM - 6PM WAT",
       description: "We're here to help during business hours",
     },
   ];

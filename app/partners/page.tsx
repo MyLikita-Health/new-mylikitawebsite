@@ -42,7 +42,8 @@ export default function PartnersPage() {
       name: "OUMC",
       fullName: "Obafemi Awolowo University Medical Centre",
       type: "Academic Medical Center",
-      description: "Collaboration in medical education technology and healthcare innovation research.",
+      description:
+        "Collaboration in medical education technology and healthcare innovation research.",
       logo: "/placeholder.svg?height=100&width=200",
       partnership: "Research & Development Partner",
       benefits: [
@@ -57,7 +58,8 @@ export default function PartnersPage() {
       name: "Federal Ministry of Health",
       fullName: "Federal Ministry of Health, Nigeria",
       type: "Government Agency",
-      description: "Supporting national healthcare digitization initiatives and public health data management.",
+      description:
+        "Supporting national healthcare digitization initiatives and public health data management.",
       logo: "/placeholder.svg?height=100&width=200",
       partnership: "Strategic Government Partner",
       benefits: [
@@ -72,7 +74,8 @@ export default function PartnersPage() {
       name: "WHO Africa",
       fullName: "World Health Organization - Africa Region",
       type: "International Organization",
-      description: "Collaborative efforts in strengthening health systems through digital transformation.",
+      description:
+        "Collaborative efforts in strengthening health systems through digital transformation.",
       logo: "/placeholder.svg?height=100&width=200",
       partnership: "Technical Collaboration Partner",
       benefits: [
@@ -87,7 +90,8 @@ export default function PartnersPage() {
       name: "ECOWAS Health",
       fullName: "Economic Community of West African States - Health",
       type: "Regional Organization",
-      description: "Regional healthcare integration and cross-border health data interoperability.",
+      description:
+        "Regional healthcare integration and cross-border health data interoperability.",
       logo: "/placeholder.svg?height=100&width=200",
       partnership: "Regional Integration Partner",
       benefits: [
@@ -102,7 +106,8 @@ export default function PartnersPage() {
       name: "African Development Bank",
       fullName: "African Development Bank Group",
       type: "Development Finance",
-      description: "Financial partnership supporting healthcare infrastructure development across Africa.",
+      description:
+        "Financial partnership supporting healthcare infrastructure development across Africa.",
       logo: "/placeholder.svg?height=100&width=200",
       partnership: "Development Finance Partner",
       benefits: [
@@ -113,7 +118,7 @@ export default function PartnersPage() {
       ],
       impact: "Enabling healthcare access for millions",
     },
-  ]
+  ];
 
   const partnershipTypes = [
     {

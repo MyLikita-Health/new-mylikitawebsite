@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import {
   Building2,
   TestTube2,
@@ -13,16 +13,21 @@ import {
   CheckCircle,
   TrendingUp,
   Clock,
-} from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+} from "lucide-react";
+import Image from "next/image";
+import Cli from "../../public/Cli.webp"
+import how from "../../public/how.jpg"
+import cor from "../../public/cor.jpg"
+import Agency from "../../public/Agency.png"
+import regulatory from "../../public/regulatory.webp"
+import Link from "next/link";
 
 export default function IndustriesPage() {
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6 },
-  }
+  };
 
   const staggerChildren = {
     animate: {
@@ -30,17 +35,16 @@ export default function IndustriesPage() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const industries = [
     {
       id: "clinics",
       name: "Clinics",
-      description:
-        "Comprehensive solutions for private and public clinics to streamline patient care and operations.",
+      description: "",
       icon: Stethoscope,
       color: "from-blue-500 to-blue-600",
-      image: "/placeholder.svg?height=300&width=400",
+      image: how,
       solutions: ["MyLikita HMS", "MediLinka", "PharmaBooks"],
       benefits: [
         "Reduce patient wait times by 40%",
@@ -67,7 +71,7 @@ export default function IndustriesPage() {
         "End-to-end hospital management solutions for comprehensive healthcare delivery.",
       icon: Building2,
       color: "from-green-500 to-green-600",
-      image: "/placeholder.svg?height=300&width=400",
+      image: Cli,
       solutions: [
         "MyLikita HMS",
         "ScanRIS",
@@ -100,7 +104,7 @@ export default function IndustriesPage() {
         "Specialized laboratory management systems for accurate and efficient diagnostic services.",
       icon: TestTube2,
       color: "from-purple-500 to-purple-600",
-      image: "/placeholder.svg?height=300&width=400",
+      image: cor,
       solutions: ["LabCore", "ScanRIS", "MyLikita HMS"],
       benefits: [
         "Reduce test turnaround time by 50%",
@@ -127,7 +131,7 @@ export default function IndustriesPage() {
         "Scalable solutions for public health management and population health monitoring.",
       icon: Shield,
       color: "from-red-500 to-red-600",
-      image: "/placeholder.svg?height=300&width=400",
+      image: Agency,
       solutions: ["MyLikita HMS", "LabCore", "MediLinka", "ScanRIS"],
       benefits: [
         "Centralized health data management",
@@ -154,7 +158,7 @@ export default function IndustriesPage() {
         "Compliance and monitoring solutions for healthcare regulatory bodies and oversight organizations.",
       icon: Users,
       color: "from-teal-500 to-teal-600",
-      image: "/placeholder.svg?height=300&width=400",
+      image: regulatory,
       solutions: ["MyLikita HMS", "LabCore", "ScanRIS", "PharmaBooks"],
       benefits: [
         "Automated compliance monitoring",
@@ -193,8 +197,12 @@ export default function IndustriesPage() {
             >
               Industries We <span className="text-gradient">Serve</span>
             </motion.h1>
-            <motion.p variants={fadeInUp} className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-              Tailored healthcare technology solutions for diverse healthcare sectors across Africa.
+            <motion.p
+              variants={fadeInUp}
+              className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed"
+            >
+              Tailored healthcare technology solutions for diverse healthcare
+              sectors across Africa.
             </motion.p>
           </motion.div>
         </div>
@@ -207,13 +215,18 @@ export default function IndustriesPage() {
             {industries.map((industry, index) => (
               <motion.div
                 key={industry.id}
-                className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}
+                className={`grid lg:grid-cols-2 gap-12 items-center ${
+                  index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
+                }`}
                 initial="initial"
                 whileInView="animate"
                 viewport={{ once: true }}
                 variants={staggerChildren}
               >
-                <motion.div variants={fadeInUp} className={index % 2 === 1 ? "lg:col-start-2" : ""}>
+                <motion.div
+                  variants={fadeInUp}
+                  className={index % 2 === 1 ? "lg:col-start-2" : ""}
+                >
                   <div className="flex items-center mb-6">
                     <div
                       className={`w-16 h-16 bg-gradient-to-r ${industry.color} rounded-xl flex items-center justify-center mr-4`}
@@ -233,8 +246,12 @@ export default function IndustriesPage() {
                   <div className="grid grid-cols-3 gap-4 mb-8">
                     {Object.entries(industry.stats).map(([key, value]) => (
                       <div key={key} className="text-center">
-                        <div className="text-2xl font-bold text-gray-900 dark:text-white">{value}</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400 capitalize">{key}</div>
+                        <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                          {value}
+                        </div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400 capitalize">
+                          {key}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -267,7 +284,10 @@ export default function IndustriesPage() {
                   </Link>
                 </motion.div>
 
-                <motion.div variants={fadeInUp} className={index % 2 === 1 ? "lg:col-start-1" : ""}>
+                <motion.div
+                  variants={fadeInUp}
+                  className={index % 2 === 1 ? "lg:col-start-1" : ""}
+                >
                   <Card className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border-0 shadow-2xl overflow-hidden">
                     <CardContent className="p-0">
                       <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
@@ -286,12 +306,17 @@ export default function IndustriesPage() {
                               Key Benefits
                             </h4>
                             <ul className="space-y-2">
-                              {industry.benefits.slice(0, 2).map((benefit, idx) => (
-                                <li key={idx} className="text-sm text-gray-600 dark:text-gray-300 flex items-start">
-                                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2 mt-2 flex-shrink-0"></div>
-                                  {benefit}
-                                </li>
-                              ))}
+                              {industry.benefits
+                                .slice(0, 2)
+                                .map((benefit, idx) => (
+                                  <li
+                                    key={idx}
+                                    className="text-sm text-gray-600 dark:text-gray-300 flex items-start"
+                                  >
+                                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2 mt-2 flex-shrink-0"></div>
+                                    {benefit}
+                                  </li>
+                                ))}
                             </ul>
                           </div>
                           <div>
@@ -300,12 +325,17 @@ export default function IndustriesPage() {
                               Challenges Solved
                             </h4>
                             <ul className="space-y-2">
-                              {industry.challenges.slice(0, 2).map((challenge, idx) => (
-                                <li key={idx} className="text-sm text-gray-600 dark:text-gray-300 flex items-start">
-                                  <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2 mt-2 flex-shrink-0"></div>
-                                  {challenge}
-                                </li>
-                              ))}
+                              {industry.challenges
+                                .slice(0, 2)
+                                .map((challenge, idx) => (
+                                  <li
+                                    key={idx}
+                                    className="text-sm text-gray-600 dark:text-gray-300 flex items-start"
+                                  >
+                                    <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2 mt-2 flex-shrink-0"></div>
+                                    {challenge}
+                                  </li>
+                                ))}
                             </ul>
                           </div>
                         </div>
@@ -347,7 +377,8 @@ export default function IndustriesPage() {
             {[
               {
                 metric: "90%",
-                description: "Reduction in paperwork for clinics using MyLikita HMS",
+                description:
+                  "Reduction in paperwork for clinics using MyLikita HMS",
                 icon: "🚀",
                 color: "text-green-600",
               },
@@ -370,8 +401,12 @@ export default function IndustriesPage() {
                     <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                       <span className="text-2xl">{story.icon}</span>
                     </div>
-                    <div className={`text-4xl font-bold mb-3 ${story.color}`}>{story.metric}</div>
-                    <p className="text-gray-600 dark:text-gray-300">{story.description}</p>
+                    <div className={`text-4xl font-bold mb-3 ${story.color}`}>
+                      {story.metric}
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      {story.description}
+                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -390,14 +425,25 @@ export default function IndustriesPage() {
             viewport={{ once: true }}
             variants={staggerChildren}
           >
-            <motion.h2 variants={fadeInUp} className="text-3xl md:text-5xl font-bold font-space-grotesk mb-6">
+            <motion.h2
+              variants={fadeInUp}
+              className="text-3xl md:text-5xl font-bold font-space-grotesk mb-6"
+            >
               Transform Your Industry
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-xl mb-8 opacity-90">
-              Join healthcare institutions across Africa that have revolutionized their operations with MyLikita.
+              Join healthcare institutions across Africa that have
+              revolutionized their operations with MyLikita.
             </motion.p>
-            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="rounded-full px-8 py-4 text-lg font-semibold">
+            <motion.div
+              variants={fadeInUp}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <Button
+                size="lg"
+                variant="secondary"
+                className="rounded-full px-8 py-4 text-lg font-semibold"
+              >
                 Schedule Consultation
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -413,5 +459,5 @@ export default function IndustriesPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

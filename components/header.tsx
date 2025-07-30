@@ -5,6 +5,8 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
+import Image from "next/image";
+import logo1 from "../public/logo1.png"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -24,7 +26,7 @@ export function Header() {
     { name: "About", href: "/about" },
     { name: "Products", href: "/products" },
     { name: "Industries", href: "/industries" },
-    { name: "Partners", href: "/partners" },
+    //  { name: "Partners", href: "/partners" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ]
@@ -38,10 +40,17 @@ export function Header() {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-400 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">ML</span>
-            </div>
-            <span className="text-xl font-bold font-space-grotesk text-gray-900 dark:text-white">MyLikita</span>
+            {/* <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-400 rounded-lg flex items-center justify-center"> */}
+              {/* <span className="text-white font-bold text-sm"></span> */}
+            {/* </div> */}
+              {/* <span className="text-xl font-bold font-space-grotesk text-gray-900 dark:text-white"> </span> */}
+            <Image 
+                              src={logo1}
+                              alt="My Image"
+                               width={100}
+                              height={60}
+                              
+                            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -55,7 +64,7 @@ export function Header() {
                 {item.name}
               </Link>
             ))}
-          </div>
+          </div> 
 
           <div className="hidden md:flex items-center space-x-4">
             <Button

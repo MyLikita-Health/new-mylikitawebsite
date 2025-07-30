@@ -44,6 +44,7 @@ export default function ProductsPage() {
     {
       id: "hms",
       name: "MyLikita HMS",
+      orgType: "hospital",
       subtitle: "Electronic Health Record System",
       description:
         "Comprehensive hospital management system designed for African healthcare facilities, providing complete patient record management, billing, and prescription handling.",
@@ -76,6 +77,7 @@ export default function ProductsPage() {
     {
       id: "labcore",
       name: "LabCore",
+      orgType: "laboratory",
       subtitle: "Laboratory Information System",
       description:
         "Advanced laboratory management system that streamlines test setup, sample tracking, and automated reporting for medical laboratories.",
@@ -108,6 +110,7 @@ export default function ProductsPage() {
     {
       id: "scanris",
       name: "ScanRIS",
+      orgType: "radiology",
       subtitle: "Radiology Information System",
       description:
         "Complete radiology management system with DICOM image viewer, enabling efficient radiology workflow and image management.",
@@ -140,6 +143,7 @@ export default function ProductsPage() {
     {
       id: "pharmabooks",
       name: "PharmaBooks",
+      orgType: "pharmacy",
       subtitle: "Pharmacy Management System",
       description:
         "Comprehensive pharmacy accounting and inventory management system designed for hospital pharmacies and retail outlets.",
@@ -172,6 +176,7 @@ export default function ProductsPage() {
     {
       id: "medilinka",
       name: "MediLinka",
+      orgType: "telemedicine",
       subtitle: "Telemedicine & TelePharmacy Platform",
       description:
         "Advanced telemedicine and telepharmacy platform enabling remote patient care, digital consultations, and medication delivery coordination.",

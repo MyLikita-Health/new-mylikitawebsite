@@ -55,17 +55,26 @@ export default function ProductPageClient({ params }: ProductPageProps) {
     email: "",
     phone: "",
     orgName: "",
-    orgType: "",
+    // orgType: productOrgTypeMap[params.slug as keyof typeof productOrgTypeMap] || "other",
     message: "",
   });
   const form = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const productOrgTypeMap = {
+    hms: "Hospital",
+    labcore: "Laboratory",
+    scanris: "Radiology Department",
+    pharmabooks: "Pharmacy",
+    medilinka: "Telemedicine Provider",
+  };
+
   const products = {
     hms: {
       id: "hms",
       name: "MyLikita HMS",
+      orgType: "hospital",
       subtitle: "Electronic Health Record System",
       description:
         "MyLikita HMS is a comprehensive hospital management system designed specifically for African healthcare facilities. It provides complete patient record management, integrated billing, and prescription handling in one unified platform.",
@@ -156,6 +165,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
     labcore: {
       id: "labcore",
       name: "LabCore",
+      orgType: "laboratory",
       subtitle: "Laboratory Information System",
       description:
         "LabCore is an advanced laboratory management system that streamlines test setup, sample tracking, and automated reporting for medical laboratories across Africa.",
@@ -238,6 +248,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
     scanris: {
       id: "scanris",
       name: "ScanRIS",
+      orgType: "radiology",
       subtitle: "Radiology Information System",
       description:
         "ScanRIS is a complete radiology management system with DICOM image viewer, enabling efficient radiology workflow and advanced image management capabilities.",
@@ -320,6 +331,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
     pharmabooks: {
       id: "pharmabooks",
       name: "PharmaBooks",
+      orgType: "pharmacy",
       subtitle: "Pharmacy Management System",
       description: "",
       longDescription:
@@ -401,6 +413,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
     medilinka: {
       id: "medilinka",
       name: "MediLinka",
+      orgType: "telemedicine",
       subtitle: "Telemedicine & TelePharmacy Platform",
       description:
         "MediLinka is an advanced telemedicine and telepharmacy platform enabling remote patient care, digital consultations, and medication delivery coordination.",
@@ -885,28 +898,20 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                         </div>
                         <div>
                           <Label htmlFor="orgType">Organization Type</Label>
-                          <Select
-                            name="orgType" // Add name attribute
-                            onValueChange={(value) =>
-                              handleInputChange("orgType", value)
+                          <div className="flex items-center h-10 px-3 py-2 text-sm border rounded-md bg-gray-100/50 dark:bg-gray-800/50">
+                            {productOrgTypeMap[
+                              product.id as keyof typeof productOrgTypeMap
+                            ] || "Other"}
+                          </div>
+                          <input
+                            type="hidden"
+                            name="orgType"
+                            value={
+                              productOrgTypeMap[
+                                product.id as keyof typeof productOrgTypeMap
+                              ] || "other"
                             }
-                          >
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select type" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="hospital">Hospital</SelectItem>
-                              <SelectItem value="clinic">Clinic</SelectItem>
-                              <SelectItem value="laboratory">
-                                Laboratory
-                              </SelectItem>
-                              <SelectItem value="pharmacy">Pharmacy</SelectItem>
-                              <SelectItem value="government">
-                                Government Agency
-                              </SelectItem>
-                              <SelectItem value="other">Other</SelectItem>
-                            </SelectContent>
-                          </Select>
+                          />
                         </div>
                       </div>
 

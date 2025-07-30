@@ -27,6 +27,8 @@ import { useEffect, useState } from "react"
 import james from "../public/james.webp"
 import jibril from "../public/jibril.webp"
 import mario from "../public/mario.webp"
+import medlink from "../public/medlink.jpeg"
+import tele from "../public/tele.jpeg"
 import Image from "next/image"
 import { DemoRequestButton } from "@/components/demo-request-button"
 2
@@ -70,7 +72,7 @@ export default function HomePage() {
         "Mylikita Health has made my life easier. Managing patient records is now seamless and stress-free.",
       name: "Dr. James King",
       role: "Medical Doctor",
-      organization: "Murtala Muhammad Hospital",
+      // organization: "Murtala Muhammad Hospital",
       image: james,
       rating: 5,
     },
@@ -78,8 +80,8 @@ export default function HomePage() {
       quote:
         "I was skeptical at first, but Mylikita Health has completely transformed the way we operate. It has simplified administrative tasks and improved efficiency.",
       name: "Mr. Ibrahim Jibril",
-      role: "Administrator",
-      organization: "OUMC",
+      // role: "Administrator",
+      // organization: "OUMC",
       image: jibril,
       rating: 5,
     },
@@ -88,7 +90,7 @@ export default function HomePage() {
         "Mylikita Health has been a game-changer for me. Their services are top-notch, and the platform is incredibly user-friendly and efficient.",
       name: "Mrs. Mario Isah",
       role: "Nurse",
-      organization: "Federal Medical Centre",
+      // organization: "Federal Medical Centre",
       image: mario,
       rating: 5,
     },
@@ -155,19 +157,25 @@ export default function HomePage() {
             >
               <span className="text-gradient">Powering Digital</span>
               <br />
-              <span className="text-gray-900 dark:text-white">Healthcare in Africa</span>
+              <span className="text-gray-900 dark:text-white">
+                Healthcare in Africa
+              </span>
             </motion.h1>
 
             <motion.p
               variants={fadeInUp}
               className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto leading-relaxed"
             >
-              Transforming healthcare delivery with innovative technology solutions for hospitals, clinics, and medical
-              institutions across Africa.
+              Transforming healthcare delivery with innovative technology
+              solutions for hospitals, clinics, and medical institutions across
+              Africa.
             </motion.p>
 
             {/* Enhanced Highlight */}
-            <motion.div variants={fadeInUp} className="flex flex-wrap justify-center items-center gap-6 mb-8">
+            <motion.div
+              variants={fadeInUp}
+              className="flex flex-wrap justify-center items-center gap-6 mb-8"
+            >
               <div className="flex items-center space-x-2 text-blue-600 dark:text-blue-400">
                 <Brain className="h-5 w-5" />
                 <span className="font-medium">Powered by AI</span>
@@ -184,7 +192,10 @@ export default function HomePage() {
               </div>
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <motion.div
+              variants={fadeInUp}
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            >
               <Link href="/products">
                 <Button
                   size="lg"
@@ -230,19 +241,31 @@ export default function HomePage() {
             variants={staggerChildren}
           >
             {[
-              { number: "500+", label: "Healthcare Facilities", icon: Building2 },
+              {
+                number: "500+",
+                label: "Healthcare Facilities",
+                icon: Building2,
+              },
               { number: "1M+", label: "Patient Records", icon: Users },
               { number: "50+", label: "Cities Covered", icon: Award },
               { number: "99.9%", label: "Uptime Guarantee", icon: TrendingUp },
             ].map((stat, index) => (
-              <motion.div key={index} variants={fadeInUp} className="text-center">
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="text-center"
+              >
                 <div className="flex justify-center mb-4">
                   <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
                     <stat.icon className="h-8 w-8 text-blue-600 dark:text-blue-400" />
                   </div>
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">{stat.number}</div>
-                <div className="text-gray-600 dark:text-gray-400 font-medium">{stat.label}</div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-gray-600 dark:text-gray-400 font-medium">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -259,7 +282,10 @@ export default function HomePage() {
             viewport={{ once: true }}
             variants={staggerChildren}
           >
-            <motion.div variants={fadeInUp} className="flex justify-center mb-6">
+            <motion.div
+              variants={fadeInUp}
+              className="flex justify-center mb-6"
+            >
               <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
                 <Brain className="h-10 w-10 text-white" />
               </div>
@@ -270,9 +296,13 @@ export default function HomePage() {
             >
               AI-Powered Healthcare
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12">
-              Harness the power of artificial intelligence to revolutionize healthcare delivery, improve patient
-              outcomes, and streamline operations.
+            <motion.p
+              variants={fadeInUp}
+              className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12"
+            >
+              Harness the power of artificial intelligence to revolutionize
+              healthcare delivery, improve patient outcomes, and streamline
+              operations.
             </motion.p>
           </motion.div>
 
@@ -289,10 +319,13 @@ export default function HomePage() {
                   <MessageSquare className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Smart Consultation</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    Smart Consultation
+                  </h3>
                   <p className="text-gray-600 dark:text-gray-300">
-                    AI listens to doctor-patient conversations, automatically summarizes visits, and generates
-                    comprehensive SOAP notes, saving valuable time for healthcare providers.
+                    AI listens to doctor-patient conversations, automatically
+                    summarizes visits, and generates comprehensive SOAP notes,
+                    saving valuable time for healthcare providers.
                   </p>
                 </div>
               </div>
@@ -302,10 +335,13 @@ export default function HomePage() {
                   <BarChart3 className="h-6 w-6 text-green-600 dark:text-green-400" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Smart Billing</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    Smart Billing
+                  </h3>
                   <p className="text-gray-600 dark:text-gray-300">
-                    AI-assisted billing suggestions and automated claim validations reduce errors, accelerate
-                    reimbursements, and ensure compliance with insurance requirements.
+                    AI-assisted billing suggestions and automated claim
+                    validations reduce errors, accelerate reimbursements, and
+                    ensure compliance with insurance requirements.
                   </p>
                 </div>
               </div>
@@ -315,10 +351,13 @@ export default function HomePage() {
                   <Activity className="h-6 w-6 text-purple-600 dark:text-purple-400" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Predictive Analytics</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    Predictive Analytics
+                  </h3>
                   <p className="text-gray-600 dark:text-gray-300">
-                    Advanced AI algorithms analyze patient data to predict health risks, optimize treatment plans, and
-                    improve preventive care strategies.
+                    Advanced AI algorithms analyze patient data to predict
+                    health risks, optimize treatment plans, and improve
+                    preventive care strategies.
                   </p>
                 </div>
               </div>
@@ -333,34 +372,52 @@ export default function HomePage() {
                         <Zap className="h-5 w-5 text-yellow-500" />
                         <span className="text-xs text-gray-500">Real-time</span>
                       </div>
-                      <div className="text-2xl font-bold text-gray-900 dark:text-white">98%</div>
-                      <div className="text-xs text-gray-600 dark:text-gray-400">Accuracy Rate</div>
+                      <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                        98%
+                      </div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400">
+                        Accuracy Rate
+                      </div>
                     </div>
                     <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-lg">
                       <div className="flex items-center justify-between mb-2">
                         <Clock className="h-5 w-5 text-blue-500" />
                         <span className="text-xs text-gray-500">Avg. Time</span>
                       </div>
-                      <div className="text-2xl font-bold text-gray-900 dark:text-white">2.5min</div>
-                      <div className="text-xs text-gray-600 dark:text-gray-400">Per Consultation</div>
+                      <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                        2.5min
+                      </div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400">
+                        Per Consultation
+                      </div>
                     </div>
                   </div>
                   <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-lg">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm font-medium text-gray-900 dark:text-white">AI Processing</span>
+                      <span className="text-sm font-medium text-gray-900 dark:text-white">
+                        AI Processing
+                      </span>
                       <span className="text-xs text-green-600">Active</span>
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-between text-xs">
-                        <span className="text-gray-600 dark:text-gray-400">Voice Recognition</span>
-                        <span className="text-gray-900 dark:text-white">100%</span>
+                        <span className="text-gray-600 dark:text-gray-400">
+                          Voice Recognition
+                        </span>
+                        <span className="text-gray-900 dark:text-white">
+                          100%
+                        </span>
                       </div>
                       <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1">
                         <div className="bg-blue-600 h-1 rounded-full w-full"></div>
                       </div>
                       <div className="flex justify-between text-xs">
-                        <span className="text-gray-600 dark:text-gray-400">SOAP Generation</span>
-                        <span className="text-gray-900 dark:text-white">85%</span>
+                        <span className="text-gray-600 dark:text-gray-400">
+                          SOAP Generation
+                        </span>
+                        <span className="text-gray-900 dark:text-white">
+                          85%
+                        </span>
                       </div>
                       <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1">
                         <div className="bg-green-600 h-1 rounded-full w-4/5"></div>
@@ -378,7 +435,11 @@ export default function HomePage() {
                 <motion.div
                   className="absolute bottom-8 left-4 w-6 h-6 bg-purple-500 rounded-full opacity-60"
                   animate={{ scale: [1, 1.3, 1], opacity: [0.6, 0.9, 0.6] }}
-                  transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, delay: 1 }}
+                  transition={{
+                    duration: 3,
+                    repeat: Number.POSITIVE_INFINITY,
+                    delay: 1,
+                  }}
                 />
               </div>
             </motion.div>
@@ -400,7 +461,8 @@ export default function HomePage() {
               Remote Healthcare Solutions
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Extend your healthcare reach with our comprehensive telemedicine and telepharmacy platforms
+              Extend your healthcare reach with our comprehensive telemedicine
+              and telepharmacy platforms
             </p>
           </motion.div>
 
@@ -420,16 +482,21 @@ export default function HomePage() {
                       <Video className="h-8 w-8 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold font-space-grotesk text-gray-900 dark:text-white">MediLinka</h3>
-                      <p className="text-blue-600 dark:text-blue-400 font-medium">Telemedicine Platform</p>
+                      <h3 className="text-2xl font-bold font-space-grotesk text-gray-900 dark:text-white">
+                        MediLinka
+                      </h3>
+                      <p className="text-blue-600 dark:text-blue-400 font-medium">
+                        Telemedicine Platform
+                      </p>
                     </div>
                   </div>
 
                   <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg mb-6 overflow-hidden">
                     <Image
-                      src="/placeholder.svg?height=200&width=400"
-                      alt="MediLinka Telemedicine Interface"
-                      fill
+                      src={medlink}
+                      alt="My Image"
+                      width={700}
+                      height={200}
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -437,7 +504,9 @@ export default function HomePage() {
                       <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg p-3">
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                          <span className="text-sm font-medium text-gray-900 dark:text-white">Live Consultation</span>
+                          <span className="text-sm font-medium text-gray-900 dark:text-white">
+                            Live Consultation
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -451,7 +520,10 @@ export default function HomePage() {
                       "Digital Prescription Management",
                       "Multi-device Compatibility",
                     ].map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-gray-700 dark:text-gray-300">
+                      <li
+                        key={idx}
+                        className="flex items-center text-gray-700 dark:text-gray-300"
+                      >
                         <CheckCircle className="h-4 w-4 text-green-500 mr-3 flex-shrink-0" />
                         {feature}
                       </li>
@@ -480,15 +552,18 @@ export default function HomePage() {
                       <h3 className="text-2xl font-bold font-space-grotesk text-gray-900 dark:text-white">
                         MyLikita TelePharmacy
                       </h3>
-                      <p className="text-green-600 dark:text-green-400 font-medium">Remote Pharmacy Services</p>
+                      <p className="text-green-600 dark:text-green-400 font-medium">
+                        Remote Pharmacy Services
+                      </p>
                     </div>
                   </div>
 
                   <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg mb-6 overflow-hidden">
                     <Image
-                      src="/placeholder.svg?height=200&width=400"
-                      alt="TelePharmacy Interface"
-                      fill
+                      src={tele}
+                      alt="My Image"
+                      width={700}
+                      height={200}
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -496,7 +571,9 @@ export default function HomePage() {
                       <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg p-3">
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
-                          <span className="text-sm font-medium text-gray-900 dark:text-white">Processing Order</span>
+                          <span className="text-sm font-medium text-gray-900 dark:text-white">
+                            Processing Order
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -510,7 +587,10 @@ export default function HomePage() {
                       "Inventory Management",
                       "Patient Medication History",
                     ].map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-gray-700 dark:text-gray-300">
+                      <li
+                        key={idx}
+                        className="flex items-center text-gray-700 dark:text-gray-300"
+                      >
                         <CheckCircle className="h-4 w-4 text-green-500 mr-3 flex-shrink-0" />
                         {feature}
                       </li>
@@ -544,7 +624,8 @@ export default function HomePage() {
               Trusted by Leading Health Institutions
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Join hundreds of healthcare facilities across Africa that trust MyLikita for their digital transformation
+              Join hundreds of healthcare facilities across Africa that trust
+              MyLikita for their digital transformation
             </p>
           </motion.div>
 
@@ -562,8 +643,12 @@ export default function HomePage() {
                     <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Building2 className="h-8 w-8 text-blue-600 dark:text-blue-400" />
                     </div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white mb-1 text-sm">{client.name}</h3>
-                    <p className="text-xs text-gray-600 dark:text-gray-400">{client.location}</p>
+                    <h3 className="font-semibold text-gray-900 dark:text-white mb-1 text-sm">
+                      {client.name}
+                    </h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
+                      {client.location}
+                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -586,7 +671,8 @@ export default function HomePage() {
               What Our Users Are Saying
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Real feedback from healthcare professionals using MyLikita solutions
+              Real feedback from healthcare professionals using MyLikita
+              solutions
             </p>
           </motion.div>
 
@@ -605,7 +691,10 @@ export default function HomePage() {
                       <Quote className="h-8 w-8 text-blue-600 dark:text-blue-400 mr-2" />
                       <div className="flex space-x-1">
                         {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                          <Star
+                            key={i}
+                            className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                          />
                         ))}
                       </div>
                     </div>
@@ -624,9 +713,15 @@ export default function HomePage() {
                         />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.role}</p>
-                        <p className="text-sm text-blue-600 dark:text-blue-400">{testimonial.organization}</p>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">
+                          {testimonial.name}
+                        </h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          {testimonial.role}
+                        </p>
+                        <p className="text-sm text-blue-600 dark:text-blue-400">
+                          {testimonial.organization}
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -683,9 +778,14 @@ export default function HomePage() {
                     <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       {post.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">{post.excerpt}</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                      {post.excerpt}
+                    </p>
                     <Link href="/blog">
-                      <Button variant="ghost" className="text-blue-600 hover:text-blue-700 p-0 h-auto font-semibold">
+                      <Button
+                        variant="ghost"
+                        className="text-blue-600 hover:text-blue-700 p-0 h-auto font-semibold"
+                      >
                         Read More
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
@@ -733,30 +833,47 @@ export default function HomePage() {
             >
               Our Mission
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-              To revolutionize healthcare delivery in Africa by providing cutting-edge technology solutions that improve
-              patient outcomes, streamline operations, and empower healthcare professionals with the tools they need to
-              deliver exceptional care.
+            <motion.p
+              variants={fadeInUp}
+              className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed"
+            >
+              To revolutionize healthcare delivery in Africa by providing
+              cutting-edge technology solutions that improve patient outcomes,
+              streamline operations, and empower healthcare professionals with
+              the tools they need to deliver exceptional care.
             </motion.p>
-            <motion.div variants={fadeInUp} className="grid md:grid-cols-3 gap-6">
+            <motion.div
+              variants={fadeInUp}
+              className="grid md:grid-cols-3 gap-6"
+            >
               {[
                 {
                   title: "Innovation",
-                  description: "Cutting-edge technology solutions designed for African healthcare needs",
+                  description:
+                    "Cutting-edge technology solutions designed for African healthcare needs",
                 },
                 {
                   title: "Impact",
-                  description: "Improving patient outcomes and healthcare delivery across the continent",
+                  description:
+                    "Improving patient outcomes and healthcare delivery across the continent",
                 },
-                { title: "Integration", description: "Seamless integration with existing healthcare infrastructure" },
+                {
+                  title: "Integration",
+                  description:
+                    "Seamless integration with existing healthcare infrastructure",
+                },
               ].map((item, index) => (
                 <Card
                   key={index}
                   className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <CardContent className="p-6 text-center">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{item.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
+                    <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      {item.description}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
@@ -779,8 +896,8 @@ export default function HomePage() {
               Our Product Suite
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Comprehensive healthcare technology solutions designed to meet the unique needs of African healthcare
-              institutions.
+              Comprehensive healthcare technology solutions designed to meet the
+              unique needs of African healthcare institutions.
             </p>
           </motion.div>
 
@@ -794,20 +911,35 @@ export default function HomePage() {
             {[
               {
                 name: "MyLikita HMS",
-                description: "Complete Electronic Health Record System for comprehensive patient management",
-                features: ["Patient Records", "Billing System", "Prescription Management"],
+                description:
+                  "Complete Electronic Health Record System for comprehensive patient management",
+                features: [
+                  "Patient Records",
+                  "Billing System",
+                  "Prescription Management",
+                ],
                 color: "from-blue-500 to-blue-600",
               },
               {
-                name: "MyLikita LIS",
-                description: "Laboratory Information System for efficient test management and reporting",
-                features: ["Test Setup", "Sample Tracking", "Automated Reporting"],
+                name: "MyLikita LabCore",
+                description:
+                  "Laboratory Information System for efficient test management and reporting",
+                features: [
+                  "Test Setup",
+                  "Sample Tracking",
+                  "Automated Reporting",
+                ],
                 color: "from-green-500 to-green-600",
               },
               {
                 name: "MediLinka",
-                description: "Telemedicine platform enabling remote consultations and patient care",
-                features: ["Video Consultations", "Remote Monitoring", "Digital Prescriptions"],
+                description:
+                  "Telemedicine platform enabling remote consultations and patient care",
+                features: [
+                  "Video Consultations",
+                  "Remote Monitoring",
+                  "Digital Prescriptions",
+                ],
                 color: "from-purple-500 to-purple-600",
               },
             ].map((product, index) => (
@@ -819,11 +951,18 @@ export default function HomePage() {
                     >
                       <div className="w-6 h-6 bg-white rounded opacity-80"></div>
                     </div>
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{product.name}</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">{product.description}</p>
+                    <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                      {product.name}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4">
+                      {product.description}
+                    </p>
                     <ul className="space-y-2 mb-6">
                       {product.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                        <li
+                          key={idx}
+                          className="flex items-center text-sm text-gray-600 dark:text-gray-300"
+                        >
                           <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                           {feature}
                         </li>
@@ -851,7 +990,10 @@ export default function HomePage() {
             variants={fadeInUp}
           >
             <Link href="/products">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8">
+              <Button
+                size="lg"
+                className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8"
+              >
                 View All Products
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -870,14 +1012,20 @@ export default function HomePage() {
             viewport={{ once: true }}
             variants={staggerChildren}
           >
-            <motion.h2 variants={fadeInUp} className="text-3xl md:text-5xl font-bold font-space-grotesk mb-6">
+            <motion.h2
+              variants={fadeInUp}
+              className="text-3xl md:text-5xl font-bold font-space-grotesk mb-6"
+            >
               Ready to Transform Your Healthcare Facility?
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-xl mb-8 opacity-90">
-              Join hundreds of healthcare institutions across Africa that trust MyLikita for their digital
-              transformation.
+              Join hundreds of healthcare institutions across Africa that trust
+              MyLikita for their digital transformation.
             </motion.p>
-            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.div
+              variants={fadeInUp}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
               <DemoRequestButton variant="secondary" />
               <Link href="/contact">
                 <Button
@@ -893,5 +1041,5 @@ export default function HomePage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
